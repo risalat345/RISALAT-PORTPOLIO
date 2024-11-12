@@ -148,8 +148,9 @@ html{
     object-fit: cover;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);   
 }
-@media (min-width: 768px) { /* Adjust the max-width as needed for your mobile breakpoint */
+@media (max-width: 800px) { /* Adjust the max-width as needed for your mobile breakpoint */
   body{
     padding: 0;
+      overflow-x:hidden;
   }
 }
