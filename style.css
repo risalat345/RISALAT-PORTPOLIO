@@ -1,0 +1,155 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+body{
+    background-color: rgb(32, 30, 30);
+    color: white;
+    padding:2rem 2rem;
+    padding-bottom: 0;
+    font-family: 'Bebas Neue', sans-serif;
+}
+html{
+  scroll-behavior: smooth;
+}
+.active {
+  border-radius: 50%;
+  background-color: cyan !important;
+}
+#mySpan {
+  display: inline-block;
+  border-right: 2px solid cyan; /* Set the cursor pointer color to red */
+  animation: blink 1s step-end infinite;
+}
+@keyframes blink {
+  from, to { border-color: transparent; }
+  50% { border-color: cyan; } /* Make the cursor blink red */
+}
+/* Add this to your style.css or inside the <style> tag */
+@keyframes slideFromRight {
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.animate-right {
+  animation: slideFromRight 1s ease-out forwards;
+}
+
+.card {
+    width: 200px;
+    height: 300px;
+    perspective: 1000px;
+  }
+  .card-inner {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.4s;
+  }
+  .card:hover .card-inner {
+    transform: rotateY(180deg);
+  }
+  
+  .card-front,
+  .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+  }
+  
+  /* Front side of the card */
+  .card-front {
+    background-color:cyan;
+  }
+  
+  /* Back side of the card */
+  .card-back {
+    background-color:black;
+    transform: rotateY(180deg);
+  }
+  .download-btn {
+    position: relative;
+    overflow: hidden;
+    background-color: transparent;
+    color: white;
+    border: 2px solid cyan;
+    transition: color 0.3s ease; 
+    
+  }
+  .download-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background-color: cyan;
+    transition: left 1s ease;
+    z-index: -1;
+  }
+  
+  .download-btn:hover::before {
+    left: 0%; 
+  }
+  
+  .download-btn:hover {
+    color: black; /* Change text color to black when hovered */
+  }  
+.profile-card {
+    position: relative;
+    width:300px;
+    height:300px;
+    border-radius: 50%;
+    background: radial-gradient(circle at center, #8a2be2,cyan);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 30px cyan;
+}
+.profile-card2 {
+    position: relative;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.profile-card2 img{
+    border: 2px solid gray;
+}
+/* Neon Effect Ring */
+.profile-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 50%;
+    padding: 5px;
+    background: linear-gradient(45deg,rgb(32, 174, 235),cyan);
+    z-index: -1;
+    filter: blur(15px);
+} 
+.profile-card img {
+    width: 90%;
+    height: 90%;
+    border-radius: 50%;
+    border: 3px solid black;
+    object-fit: cover;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);   
+}
+@media (max-width: 768px) { /* Adjust the max-width as needed for your mobile breakpoint */
+  body{
+    padding: 0;
+  }
+}
