@@ -1,5 +1,5 @@
 const spanElement = document.getElementById('mySpan');
-        const texts = ['Gamer', 'Blogger', 'Web Developer', 'Web Designer'];
+        const texts = ['Gamer','Frontend Developer', 'Blogger', 'Web Developer', 'Web Designer'];
         let index = 0;
         let charIndex = 0;
         let deleting = false;
