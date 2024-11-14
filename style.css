@@ -5,7 +5,25 @@ body{
     color: white;
     padding-bottom: 0;
     font-family: 'Bebas Neue', sans-serif;
+}@keyframes slideInFromLeft {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }
+
+.animated-slide {
+  opacity: 0;
+  transition: opacity 0.5s ease-out;
+}
+.animate {
+  animation: slideInFromLeft 1s forwards;
+}
+
 html{
   scroll-behavior: smooth;
 }
@@ -115,6 +133,7 @@ html{
     align-items: center;
     box-shadow: 0 0 30px cyan;
 }
+
 .profile-card2 {
     position: relative;
     border-radius: 50%;
@@ -147,8 +166,19 @@ html{
     object-fit: cover;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);   
 }
-@media (min-width: 768px) { /* Adjust the max-width as needed for your mobile breakpoint */
+.left{
+  width: 10%;
+}
+.right{
+  width: 90%;
+}
+@media (max-width: 768px) { /* Adjust the max-width as needed for your mobile breakpoint */
   body{
     overflow-x: hidden;
+    margin:0;
+    padding: 0;
+  }
+  .right{
+  width: 100vw;;
   }
 }
