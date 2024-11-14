@@ -36,63 +36,36 @@ const spanElement = document.getElementById('mySpan');
 
         // Start the animation
         animateText();
-        document.addEventListener('DOMContentLoaded', function() {
-          // Select all sections you want to animate
-          const sections = document.querySelectorAll('section');
-      
-          // Function to check if an element is in view
-          function isInView(element) {
-            const rect = element.getBoundingClientRect();
-            return rect.top <= window.innerHeight && rect.bottom >= 0;
-          }
-      
-          // Add or remove animation class when scrolling
-          function handleScroll() {
-            sections.forEach(section => {
-              if (isInView(section)) {
-                // If the section is in view and does not have the class, add it
-                if (!section.classList.contains('animate-right')) {
-                  section.classList.add('animate-right');
+        document.addEventListener("DOMContentLoaded", () => {
+            const svgs = document.querySelectorAll("#skills svg");
+          
+            const observer = new IntersectionObserver((entries, observer) => {
+              entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                  entry.target.classList.add("animate");
+                  observer.unobserve(entry.target); // Stop observing once animated
                 }
-              } else {
-                // If the section is out of view, remove the class to allow re-animation
-                section.classList.remove('animate-right');
-              }
+              });
+            }, { threshold: 0.5 });
+          
+            svgs.forEach(svg => {
+              svg.classList.add("animated-slide");
+              observer.observe(svg);
             });
-          }
-      
-          // Run on scroll and initial page load
-          window.addEventListener('scroll', handleScroll);
-          handleScroll(); // Check on page load
-        });
-        document.addEventListener('scroll', () => {
-          const sections = document.querySelectorAll('section');
-          const links = {
-            home: document.getElementById('link-home'),
-            about: document.getElementById('link-about'),
-            education: document.getElementById('link-education'),
-            skills: document.getElementById('link-skills'),
-            project: document.getElementById('link-project'),
-            contact: document.getElementById('link-contact'),
-          };
-    
-          let currentSection = '';
-    
-          sections.forEach((section) => {
-            const rect = section.getBoundingClientRect();
-            if (rect.top >= 0 && rect.top < window.innerHeight / 2) {
-              currentSection = section.id;
-            }
           });
-    
-          // Remove 'active' class from all links
-          for (let key in links) {
-            links[key].classList.remove('active');
-          }
-    
-          // Add 'active' class to the current section's link
-          if (currentSection && links[currentSection]) {
-            links[currentSection].classList.add('active');
-          }
+          document.addEventListener('scroll', () => {
+            const sections = ['home', 'about', 'education',"skills","project","contact"];
+            const offset = window.innerHeight / 2; // Midpoint of the viewport
+
+            sections.forEach(section => {
+                const element = document.getElementById(section);
+                const link = document.getElementById(`link-${section}`);
+
+                if (element.getBoundingClientRect().top <= offset && element.getBoundingClientRect().bottom > offset) {
+                    link.querySelector('.part').classList.add('active');
+                } else {
+                    link.querySelector('.part').classList.remove('active');
+                }
+            });
         });
       
