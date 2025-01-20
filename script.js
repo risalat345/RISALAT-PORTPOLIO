@@ -66,4 +66,39 @@ const spanElement = document.getElementById('mySpan');
                 }
             });
         });
+  const menuToggle = document.getElementById('menu-toggle');
+  const menu = document.getElementById('menu');
+  const hamburger = document.getElementById('hamburger');
+  const close = document.getElementById('close');
+  const navLinks = document.querySelectorAll('#menu a');
+
+  // Toggle the menu when hamburger or close button is clicked
+  menuToggle.addEventListener('click', () => {
+    menu.classList.toggle('hidden'); // Toggle menu visibility
+    hamburger.classList.toggle('hidden'); // Hide hamburger icon
+    close.classList.toggle('hidden'); // Show close icon
+  });
+
+  // Close the menu when a link is clicked
+  navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      menu.classList.add('hidden'); // Hide the menu
+      hamburger.classList.remove('hidden'); // Show the hamburger icon
+      close.classList.add('hidden'); // Hide the close icon
+    });
+  });
+
+  // Smooth scroll to the section
+  navLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault(); // Prevent default anchor behavior
+      const targetId = link.getAttribute('href').substring(1);
+      const targetElement = document.getElementById(targetId);
+
+      window.scrollTo({
+        top: targetElement.offsetTop,
+        behavior: 'smooth'
+      });
+    });
+  })          
       
